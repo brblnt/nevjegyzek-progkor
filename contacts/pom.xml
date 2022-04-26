@@ -235,7 +235,7 @@
         <repository>
             <id>github</id>
             <name>BRBLNT</name>
-                <url>https://maven.pkg.github.com/brblnt/contacts-progkor/</url>
+                <url>https://maven.pkg.github.com/brblnt/nevjegyezek</url>
         </repository>
 
     </distributionManagement>
