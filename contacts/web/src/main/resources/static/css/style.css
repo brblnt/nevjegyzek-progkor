@@ -1,0 +1,35 @@
+html{
+    background-image: url(pics/bg.jpg);
+    background-repeat: no-repeat;
+    background-size: inherit;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}
+
+body{
+    background-color: rgb(255, 189, 122);
+    line-height: 1.5;
+    margin: 0 auto;
+    padding: 10px;
+    max-width: 1200px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    color: #454545;
+    position: relative;
+    min-height: 100%;
+    width: 100%;
+    
+}
+table, th, td {
+  border: 1px solid black;
+  padding: 5px;
+  margin: 2px;
+}
+button {
+  padding: 5px;
+}
+
+h3 {
+    padding: 10px;
+}

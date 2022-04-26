@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Névjegy hozzáadása</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div th:insert="~{shared/navbar :: navbar}"></div>
+
+<div class="container">
+    <div th:if="${success != null}">
+
+        <div th:if="${success}" class="alert alert-success" role="alert">
+
+            <p>Hozzáadás sikeresen megtörtént!</p>
+
+        </div>
+
+        <div th:unless="${success}" class="alert alert-danger" role="alert">
+            <p>Hozzáadás sikertelen volt, próbáld újra!</p>
+            <p th:value="${message}"></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div>
+            <form method="post" th:action="@{/contacts/create}">
+
+                <div class="form-group">
+                    <label for="firstName">Keresztnév</label>
+                    <input type="text" id="firstName" th:name="firstName" required class="form-control"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName">Vezetéknév</label>
+                    <input type="text" id="lastName" th:name="lastName" required class="form-control"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="birthday">Születésnap</label>
+                    <input type="text" id="birthday" th:name="birthday" class="form-control"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="phoneNumber">Telefonszám</label>
+                    <input type="text" id="phoneNumber" th:name="phoneNumber" class="form-control"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="emailAddress">E-mail cím</label>
+                    <input type="text" id="emailAddress" th:name="emailAddress" class="form-control"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Lakcím</label>
+                    <input type="text" id="address" th:name="address" class="form-control"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="other">Egyéb</label>
+                    <textarea id="other" th:name="other" class="form-control"></textarea>
+                </div>
+                <br>
+                <button class="btn btn-primary pt-3" type="submit">Hozzáadás</button>
+                <a th:href="@{/contacts/list.html}" class="btn btn-secondary pt-3" type="submit">Mégsem</a>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+</html>
