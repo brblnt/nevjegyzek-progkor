@@ -34,6 +34,6 @@ jobs:
           echo "Setting artifact version to $version"
           echo "ARTIFACT_VERSION=$version" >> $GITHUB_ENV
           
-          mvn -B versions:set -DnewVersion="$version" --file pom.xml
-          mvn -B deploy --file pom.xml
+          mvn -B versions:set -DnewVersion="$version" --file contacts/pom.xml
+          mvn -B deploy --file contacts/pom.xml
           cp "contacts/web/target/web-${version}.jar" "contacts/web/target/contacts-application.jar"
