@@ -1,0 +1,39 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: Main CI - build and publish
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup JDK17
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+      - name: Build and publish with Maven
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          version_prefix=`mvn help:evaluate -Dexpression=project.version --quiet -DforceStdout --file contacts/pom.xml | awk -F. '{print $1"."$2}'`
+          version="$version_prefix.${{github.run_number}}"
+          
+          echo "Setting artifact version to $version"
+          echo "ARTIFACT_VERSION=$version" >> $GITHUB_ENV
+          
+          mvn -B versions:set -DnewVersion="$version" --file contacts/pom.xml
+          mvn -B deploy --file contacts/pom.xml
+          cp "contacts/web/target/web-${version}.jar" "contacts/web/target/contacts-application.jar"
