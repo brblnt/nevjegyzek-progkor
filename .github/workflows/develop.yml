@@ -5,7 +5,12 @@ name: Develop CI - build
 
 on:
   push:
-    branches: [ develop ]
+    branches:
+    - 'develop/**'
+    - 'feature/**'
+    - 'bugfix/**'
+    - 'hotfix/**'
+    - 'release/**'
     
 jobs:
   build:
