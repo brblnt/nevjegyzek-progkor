@@ -13,13 +13,22 @@
 <div th:insert="~{shared/navbar :: navbar}"></div>
 <br><br>
 <div class="container">
-    <div class="card" style="width: 18rem;">
-        <img th:src="@{img/tm.jpg}" class="card-img-top" alt="I always tell the truth...">
-        <div class="card-body">
-            <h5 class="card-title">Névjegyzék alkalmazás</h5>
-            <p class="card-text text-center"> <br>Programozási környezetek projekt feladat<br><br><br></p>
-            <p class="card-text">Készítette: Bor Bálint</p>
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img th:src="@{img/tm.jpg}" class="card-img-top" alt="I always tell the truth...">
+                <div class="card-body">
+                    <h5 class="card-title">Névjegyzék alkalmazás</h5>
+                    <p class="card-text text-center"><br>Programozási környezetek projekt feladat<br><br><br></p>
+                    <p class="card-text">Készítette: Bor Bálint</p>
+                </div>
+            </div>
         </div>
+        <div class="col-md-8">
+            <div th:insert="~{shared/login :: login}"></div>
+        </div>
+
     </div>
 </div>
 </body>
