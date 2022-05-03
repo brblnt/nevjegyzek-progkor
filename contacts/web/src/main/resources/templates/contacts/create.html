@@ -64,6 +64,14 @@
                     <label for="other">Egyéb</label>
                     <textarea id="other" th:name="other" class="form-control"></textarea>
                 </div>
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input name="avatar" type="file" accept="image/*" onchange="loadFile(event)" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                        <label class="custom-file-label" for="inputGroupFile01">Kép kiválasztása</label>
+                    </div>
+                </div>
+
+                <img id="output" class="img-fluid d-md-flex">
                 <br>
                 <button class="btn btn-primary pt-3" type="submit">Hozzáadás</button>
                 <a th:href="@{/contacts/list.html}" class="btn btn-secondary pt-3" type="submit">Mégsem</a>
@@ -73,6 +81,14 @@
 
 </div>
 
-
+<script>
+	var loadFile = function(event) {
+    	var output = document.getElementById('output');
+    	output.src = URL.createObjectURL(event.target.files[0]);
+    	output.onload = function() {
+      		URL.revokeObjectURL(output.src)
+    	}
+  	};
+</script>
 </body>
 </html>
