@@ -33,7 +33,7 @@ public class ContactService {
     /**
      * Get all contact from the database.
      *
-     * @return web layer compatible list with data.
+     * @return service layer compatible list with data.
      */
     public List<ContactDTO> getAllContacts() {
         log.info("Fetch all from database.");
@@ -45,7 +45,7 @@ public class ContactService {
     /**
      * Get contact from the database.
      *
-     * @return web layer compatible model with data.
+     * @return service layer compatible model with data.
      */
     public ContactDTO getContact(final Long id) {
         log.info("Get contact from database by id: " + id + " .");
