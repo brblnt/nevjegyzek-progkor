@@ -6,7 +6,10 @@ Az alkalmazáshoz egy programozási környezet felállítása:
 - A maven packagek legújabb verziója megjelenik az artifactoryban.
 - Az alkalmazás ezután elérhetővé válik valós környezetben. (lásd lentebb)
 - Az alkalmazás Docker segítségevel megjelenik a GitHub konténerkezelőjébe.
+- Checkstyle kompatibilis.
+- Jacoco teszt lefedettség vizsgálat.
 
+## Információk
 - Készítette: Bor Bálint
 
 ## Kritériumok
@@ -15,4 +18,3 @@ Az alkalmazáshoz egy programozási környezet felállítása:
 
 ## Aktuális verzió
 Az alkalmazás legújabb verziója folyamatosan elérhető ide kattintva : [APP](https://br-blnt-contacts.herokuapp.com/)
-
