@@ -31,18 +31,18 @@ public class DatabasePopulatorImpl implements DatabasePopulator {
 
     private static final List<Contact> CONTACTS = List.of(TM, AS, TS);
 
-    private final Repository REPOSITORY;
-    private final UserRepository USER_REPOSITORY;
+    private final Repository repository;
+    private final UserRepository userRepository;
 
-    public DatabasePopulatorImpl(final Repository REPOSITORY,final UserRepository USER_REPOSITORY) {
-        this.REPOSITORY = REPOSITORY;
-        this.USER_REPOSITORY = USER_REPOSITORY;
+    public DatabasePopulatorImpl(final Repository repository, final UserRepository userRepository) {
+        this.repository = repository;
+        this.userRepository = userRepository;
     }
 
     @Override
     public void populateDatabase() {
         log.info("Create stock contacts and users to database.");
-        USER_REPOSITORY.save(admin);
-        REPOSITORY.saveAll(CONTACTS);
+        userRepository.save(admin);
+        repository.saveAll(CONTACTS);
     }
 }
