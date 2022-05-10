@@ -10,7 +10,7 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<div th:insert="~{shared/navbar :: navbar}"></div>
+<div th:insert="~{shared/navbar :: navbar( ${loginBar} )}"></div>
 <br><br>
 <div class="container">
     <div class="card">
