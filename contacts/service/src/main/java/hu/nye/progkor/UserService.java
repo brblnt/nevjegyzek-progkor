@@ -22,7 +22,9 @@ public class UserService {
     private final Converter<User, UserDTO> convertEntityToDataObject;
 
     @Autowired
-    public UserService(UserRepository repository, Converter<UserDTO, User> convertDataObjectToEntity, Converter<User, UserDTO> convertEntityToDataObject) {
+    public UserService(UserRepository repository, Converter<UserDTO,
+            User> convertDataObjectToEntity, Converter<User,
+            UserDTO> convertEntityToDataObject) {
         this.repository = repository;
         this.convertDataObjectToEntity = convertDataObjectToEntity;
         this.convertEntityToDataObject = convertEntityToDataObject;
@@ -33,7 +35,7 @@ public class UserService {
      *
      * @return web layer compatible list with data.
      */
-    public List<UserDTO> getAllContacts() {
+    public List<UserDTO> getAllUser() {
         log.info("Fetch all from database.");
         return repository.findAll().stream()
                 .map(convertEntityToDataObject::convert)
@@ -43,9 +45,9 @@ public class UserService {
     /**
      * Check the email and the password is correct.
      */
-    public boolean LoginToTheSite(UserDTO dto) {
-        boolean login = false;
-        List<UserDTO> list = getAllContacts();
+    public boolean loginToTheSite(UserDTO dto) {
+        List<UserDTO> list = getAllUser();
+        log.info(String.valueOf(list));
         for (UserDTO temp : list) {
             if (temp.emailAddress().equals(dto.emailAddress())) {
                 if (temp.password().equals(dto.password())) {
@@ -53,7 +55,7 @@ public class UserService {
                 }
             }
         }
-        return login;
+        return false;
     }
 
 }

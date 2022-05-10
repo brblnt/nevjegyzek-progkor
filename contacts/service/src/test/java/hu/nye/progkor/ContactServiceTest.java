@@ -1,15 +1,12 @@
 package hu.nye.progkor;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import hu.nye.progkor.exception.NotFoundException;
 import hu.nye.progkor.model.Contact;
 import hu.nye.progkor.model.ContactDTO;
 import org.junit.jupiter.api.Test;

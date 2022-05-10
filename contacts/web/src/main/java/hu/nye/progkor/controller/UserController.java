@@ -52,8 +52,18 @@ public class UserController {
                                   final @RequestParam(value = "password", required = false) String password,
                                   final UserRequest userRequest
     ) {
-        login = userService.LoginToTheSite(requestToDto.convert(userRequest));
+        login = userService.loginToTheSite(requestToDto.convert(userRequest));
         log.info(String.valueOf(login));
+        redirectAttributes.addFlashAttribute("loginBar", login);
+        return "redirect:/";
+    }
+
+    /**
+     * Logout get mapping.
+     */
+    @GetMapping("/logout")
+    public String logout(final RedirectAttributes redirectAttributes, final Model model) {
+        login = false;
         redirectAttributes.addFlashAttribute("loginBar", login);
         return "redirect:/";
     }
