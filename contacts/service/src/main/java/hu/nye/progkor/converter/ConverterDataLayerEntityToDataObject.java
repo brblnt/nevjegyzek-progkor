@@ -3,7 +3,6 @@ package hu.nye.progkor.converter;
 import hu.nye.progkor.model.Contact;
 import hu.nye.progkor.model.ContactDTO;
 import lombok.NonNull;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -11,8 +10,7 @@ import org.springframework.stereotype.Component;
  * Convert Data layer model to Service layer model.
  */
 @Component
-@Slf4j
-public class ConvertDataLayerEntityToDataObject implements Converter<Contact, ContactDTO> {
+public class ConverterDataLayerEntityToDataObject implements Converter<Contact, ContactDTO> {
 
     @Override
     public ContactDTO convert(@NonNull final Contact contact) {

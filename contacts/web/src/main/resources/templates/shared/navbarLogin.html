@@ -9,7 +9,7 @@
     <script th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
 </head>
 <body>
-<nav th:fragment="navbarVisitor" class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+<nav th:fragment="navbarLogin" class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
     <div class="container">
         <a class="navbar-brand" th:href="@{../}">
             <img th:src="@{/img/phonebook.png}" alt="" width="30" height="24" class="d-inline-block align-text-top">
@@ -23,7 +23,19 @@
                     <a class="nav-link active" aria-current="page" th:href="@{../}">Kezdőoldal</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" th:href="@{/view/registration.html}">Regisztráció</a>
+                    <a class="nav-link active" aria-current="page" th:href="@{/contacts/list.html}">Névjegyek</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/contacts/create.html}">Hozzáadás</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/contacts/export/pdf}">Összes névjegy exportálása</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" >Profil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" >Kilépés</a>
                 </li>
             </ul>
         </div>
