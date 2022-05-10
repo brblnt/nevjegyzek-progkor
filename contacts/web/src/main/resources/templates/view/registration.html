@@ -9,6 +9,7 @@
     <script th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
 </head>
 <body>
+<div th:insert="~{shared/navbar :: navbar( ${loginBar} )}"></div>
 <form>
     <div class="form-group">
         <label for="emailInput">Email cím</label>
@@ -23,6 +24,7 @@
         <input type="password" class="form-control" id="passwordAgainInput">
     </div>
     <button type="submit" class="btn btn-primary">Regisztráció</button>
+    <a th:href="@{../}" class="btn btn-secondary" type="submit">Mégsem</a>
 </form>
 </body>
 </html>

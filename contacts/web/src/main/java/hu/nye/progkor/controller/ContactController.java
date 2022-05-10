@@ -46,6 +46,7 @@ public class ContactController {
      */
     @GetMapping(path = "/create.html")
     public String contactsCreatePage(final Model model) {
+        model.addAttribute("loginBar", UserController.isLogin());
         return "contacts/create";
     }
 
@@ -54,6 +55,7 @@ public class ContactController {
      */
     @PostMapping(path = "/create", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String createContactPage(final Model model, final ContactRequest contactRequest) {
+        model.addAttribute("loginBar", UserController.isLogin());
         final ContactResponse contact = dataToResponse.convert(
                 contactService.createContact(
                         requestToDto.convert(contactRequest)
@@ -68,6 +70,7 @@ public class ContactController {
      */
     @GetMapping(path = "/list.html")
     public String getAllContactsPage(final Model model) {
+        model.addAttribute("loginBar", UserController.isLogin());
         final List<ContactResponse> contacts = contactService.getAllContacts().stream()
                 .map(dataToResponse::convert)
                 .toList();
@@ -81,6 +84,7 @@ public class ContactController {
     @GetMapping(path = "/{id}/edit.html")
     public String updateContactPage(final RedirectAttributes redirectAttributes, final Model model,
                                     final @PathVariable("id") Long id) {
+        model.addAttribute("loginBar", UserController.isLogin());
         try {
             final ContactDTO contact = contactService.getContact(id);
             model.addAttribute("contact", contact);
@@ -99,6 +103,7 @@ public class ContactController {
                                   final @RequestParam(value = "id", required = false) Long id,
                                   final ContactRequest contactRequest
     ) {
+        model.addAttribute("loginBar", UserController.isLogin());
         try {
             final ContactResponse contact = dataToResponse.convert(
                     contactService.updateContact(id, requestToDto.convert(contactRequest)));
@@ -114,6 +119,7 @@ public class ContactController {
     @GetMapping(path = "/remove/{id}")
     public String removeContact(final RedirectAttributes redirectAttributes,
                                 final @PathVariable("id") Long id) {
+        redirectAttributes.addAttribute("loginBar", UserController.isLogin());
         try {
             contactService.deleteContact(id);
             redirectAttributes.addFlashAttribute("success", true);
@@ -129,6 +135,7 @@ public class ContactController {
     @GetMapping(path = "/{id}/contactCard.html")
     public String showContactPage(final RedirectAttributes redirectAttributes, final Model model,
                                     final @PathVariable("id") Long id) {
+        model.addAttribute("loginBar", UserController.isLogin());
         try {
             final ContactDTO contact = contactService.getContact(id);
             model.addAttribute("contact", dataToResponse.convert(contact));

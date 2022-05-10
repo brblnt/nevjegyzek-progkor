@@ -12,7 +12,7 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Service;
 
 /**
- * Main class of service layer.
+ * Main class of service layer for contacts.
  */
 @Service
 @Slf4j
