@@ -1,11 +1,18 @@
 package hu.nye.progkor.controller;
 
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 
+import com.lowagie.text.DocumentException;
 import hu.nye.progkor.ContactService;
 import hu.nye.progkor.exception.NotFoundException;
+import hu.nye.progkor.export.ContactsToPDF;
 import hu.nye.progkor.model.ContactDTO;
 import hu.nye.progkor.model.request.ContactRequest;
 import hu.nye.progkor.model.response.ContactResponse;
@@ -136,5 +143,25 @@ public class ContactController {
         } catch (NotFoundException e) {
             return "/exception/404.html";
         }
+    }
+
+    /**
+     * Export all contact to pdf.
+     */
+    @GetMapping("/export/pdf")
+    public void exportToPDF(HttpServletResponse response) throws DocumentException, IOException {
+        response.setContentType("application/pdf");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=contacts_" + currentDateTime + ".pdf";
+        response.setHeader(headerKey, headerValue);
+
+        List<ContactDTO> listUsers = contactService.getAllContacts();
+
+        ContactsToPDF exporter = new ContactsToPDF(listUsers);
+        exporter.export(response);
+
     }
 }

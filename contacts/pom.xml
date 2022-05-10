@@ -119,6 +119,12 @@
                 <scope>test</scope>
             </dependency>
 
+            <dependency>
+                <groupId>com.github.librepdf</groupId>
+                <artifactId>openpdf</artifactId>
+                <version>1.3.8</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -192,6 +198,7 @@
                         <exclude>**\converter\**</exclude>
                         <exclude>**\controller\**</exclude>
                         <exclude>**\exception\**</exclude>
+                        <exclude>**\export\**</exclude>
                     </excludes>
                     <rules>
                         <rule>
