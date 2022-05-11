@@ -47,7 +47,6 @@ public class UserService {
      */
     public boolean loginToTheSite(UserDTO dto) {
         List<UserDTO> list = getAllUser();
-        log.info(String.valueOf(list));
         for (UserDTO temp : list) {
             if (temp.emailAddress().equals(dto.emailAddress())) {
                 if (temp.password().equals(dto.password())) {
