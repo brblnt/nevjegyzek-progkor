@@ -87,4 +87,14 @@ public class UserController {
         return "/index";
     }
 
+    /**
+     * View page.
+     */
+    @GetMapping(path = "/index")
+    public String indexLogined2(final Model model) {
+        model.addAttribute("loginBar", login);
+        return "/index";
+    }
+
+
 }
