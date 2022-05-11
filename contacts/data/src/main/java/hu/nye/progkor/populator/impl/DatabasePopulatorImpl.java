@@ -47,8 +47,9 @@ public class DatabasePopulatorImpl implements DatabasePopulator {
     }
 
     private void saveUsers() {
-        if(userRepository.findAll().contains(admin))
-                return;
+        if (userRepository.findAll().contains(admin)) {
+            return;
+        }
         userRepository.save(admin);
     }
 }
