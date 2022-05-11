@@ -42,10 +42,13 @@ public class DatabasePopulatorImpl implements DatabasePopulator {
     @Override
     public void populateDatabase() {
         log.info("Create stock contacts and users to database.");
+        saveUsers();
         repository.saveAll(CONTACTS);
     }
 
     private void saveUsers() {
+        if(userRepository.findAll().contains(admin))
+                return;
         userRepository.save(admin);
     }
 }
