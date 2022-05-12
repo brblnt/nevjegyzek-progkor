@@ -6,10 +6,12 @@ name: Develop CI - build
 on:
   push:
     branches:
+    - 'develop'
     - 'develop/**'
     - 'feature/**'
     - 'bugfix/**'
     - 'hotfix/**'
+    - 'fixes/**'
     - 'release/**'
     
 jobs:
