@@ -17,4 +17,4 @@ Az alkalmazáshoz egy programozási környezet felállítása:
 - Maven verzió: 3
 
 ## Aktuális verzió
-Az alkalmazás legújabb verziója folyamatosan elérhető ide kattintva : [APP](https://br-blnt-contact.herokuapp.com/)
+Az alkalmazás legújabb verziója folyamatosan elérhető ide kattintva : [APP](https://br-blnt-contacts.herokuapp.com/)
