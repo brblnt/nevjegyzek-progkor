@@ -90,6 +90,7 @@ public class ContactController {
             model.addAttribute("contact", contact);
             return "contacts/edit";
         } catch (NotFoundException e) {
+            redirectAttributes.addFlashAttribute("loginBar", UserController.isLogin());
             return "/exception/404.html";
         }
     }
@@ -109,6 +110,7 @@ public class ContactController {
                     contactService.updateContact(id, requestToDto.convert(contactRequest)));
             return "redirect:/contacts/list.html";
         } catch (NotFoundException e) {
+            redirectAttributes.addFlashAttribute("loginBar", UserController.isLogin());
             return "/exception/nicetry.html";
         }
     }

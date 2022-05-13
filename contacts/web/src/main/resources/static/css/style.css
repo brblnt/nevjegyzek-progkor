@@ -1,4 +1,5 @@
 html{
+    background-image: url(pics/bg.jpg);
     background-repeat: no-repeat;
     background-size: inherit;
     background-attachment: fixed;
