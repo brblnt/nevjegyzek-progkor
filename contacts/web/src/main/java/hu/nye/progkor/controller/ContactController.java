@@ -111,7 +111,7 @@ public class ContactController {
             return "redirect:/contacts/list.html";
         } catch (NotFoundException e) {
             redirectAttributes.addFlashAttribute("loginBar", UserController.isLogin());
-            return "/exception/nicetry.html";
+            return "/exception/nicetry";
         }
     }
 
