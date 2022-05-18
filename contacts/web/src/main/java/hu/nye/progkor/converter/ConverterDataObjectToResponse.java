@@ -12,17 +12,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class ConverterDataObjectToResponse implements Converter<ContactDTO, ContactResponse> {
 
-    @Override
-    public ContactResponse convert(@NonNull final ContactDTO dto) {
-        return new ContactResponse(
-                dto.id(),
-                dto.firstName(),
-                dto.lastName(),
-                dto.birthday(),
-                dto.phoneNumber(),
-                dto.emailAddress(),
-                dto.address(),
-                dto.other()
-        );
-    }
+  @Override
+  public ContactResponse convert(@NonNull final ContactDTO dto) {
+    return new ContactResponse(
+            dto.id(),
+            dto.firstName(),
+            dto.lastName(),
+            dto.birthday(),
+            dto.phoneNumber(),
+            dto.emailAddress(),
+            dto.address(),
+            dto.other()
+    );
+  }
 }

@@ -12,16 +12,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class ConverterDataObjectToDataLayerEntity implements Converter<ContactDTO, Contact> {
 
-    @Override
-    public Contact convert(@NonNull final ContactDTO dto) {
-        return new Contact(dto.id(),
-                dto.firstName(),
-                dto.lastName(),
-                dto.birthday(),
-                dto.phoneNumber(),
-                dto.emailAddress(),
-                dto.address(),
-                dto.other()
-        );
-    }
+  @Override
+  public Contact convert(@NonNull final ContactDTO dto) {
+    return new Contact(dto.id(),
+            dto.firstName(),
+            dto.lastName(),
+            dto.birthday(),
+            dto.phoneNumber(),
+            dto.emailAddress(),
+            dto.address(),
+            dto.other()
+    );
+  }
 }

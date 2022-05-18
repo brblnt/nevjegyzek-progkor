@@ -14,21 +14,20 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @RestControllerAdvice
 public class WebExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @org.springframework.web.bind.annotation.ExceptionHandler(NotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public String handleNotFoundException(final NotFoundException e) {
-        log.error("Not found exception:", e);
-        return "404-es hiba!";
-    }
+  @org.springframework.web.bind.annotation.ExceptionHandler(NotFoundException.class)
+  @ResponseStatus(HttpStatus.NOT_FOUND)
+  public String handleNotFoundException(final NotFoundException e) {
+    log.error("Not found exception:", e);
+    return "404-es hiba!";
+  }
 
 
-
-    @org.springframework.web.bind.annotation.ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public String handleException(final Exception e) {
-        log.error("Server error:", e);
-        return "500-as hiba!";
-    }
+  @org.springframework.web.bind.annotation.ExceptionHandler(Exception.class)
+  @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+  public String handleException(final Exception e) {
+    log.error("Server error:", e);
+    return "500-as hiba!";
+  }
 
 }
 

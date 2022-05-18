@@ -26,55 +26,55 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/contacts")
 public class ContactRestController {
 
-    private final ContactService contactService;
-    private final Converter<ContactDTO, ContactResponse> contactDtoToResponseConverter;
-    private final Converter<ContactRequest, ContactDTO> contactRequestToDtoConverter;
+  private final ContactService contactService;
+  private final Converter<ContactDTO, ContactResponse> contactDtoToResponseConverter;
+  private final Converter<ContactRequest, ContactDTO> contactRequestToDtoConverter;
 
-    /**
-     * Get all contact.
-     */
-    @GetMapping
-    public List<ContactResponse> getContacts() {
-        return contactService.getAllContacts().stream()
-                .map(contactDtoToResponseConverter::convert)
-                .toList();
-    }
+  /**
+   * Get all contact.
+   */
+  @GetMapping
+  public List<ContactResponse> getContacts() {
+    return contactService.getAllContacts().stream()
+            .map(contactDtoToResponseConverter::convert)
+            .toList();
+  }
 
-    /**
-     * Get contact which has id in param.
-     */
-    @GetMapping("/{id}")
-    public ContactResponse getContact(final @PathVariable Long id) {
-        return contactDtoToResponseConverter.convert(contactService.getContact(id));
-    }
+  /**
+   * Get contact which has id in param.
+   */
+  @GetMapping("/{id}")
+  public ContactResponse getContact(final @PathVariable Long id) {
+    return contactDtoToResponseConverter.convert(contactService.getContact(id));
+  }
 
-    /**
-     * Create contact.
-     */
-    @PostMapping
-    public ContactResponse createContact(final @RequestBody ContactRequest contactRequest) {
-        return contactDtoToResponseConverter.convert(
-                contactService.createContact(contactRequestToDtoConverter.convert(contactRequest))
-        );
-    }
+  /**
+   * Create contact.
+   */
+  @PostMapping
+  public ContactResponse createContact(final @RequestBody ContactRequest contactRequest) {
+    return contactDtoToResponseConverter.convert(
+            contactService.createContact(contactRequestToDtoConverter.convert(contactRequest))
+    );
+  }
 
-    /**
-     * Update contact.
-     */
-    @PutMapping("/{id}")
-    public ContactResponse updateContact(final @PathVariable Long id, final @RequestBody ContactRequest contactRequest) {
-        return contactDtoToResponseConverter.convert(
-                contactService.updateContact(id, contactRequestToDtoConverter.convert(contactRequest))
-        );
-    }
+  /**
+   * Update contact.
+   */
+  @PutMapping("/{id}")
+  public ContactResponse updateContact(final @PathVariable Long id, final @RequestBody ContactRequest contactRequest) {
+    return contactDtoToResponseConverter.convert(
+            contactService.updateContact(id, contactRequestToDtoConverter.convert(contactRequest))
+    );
+  }
 
-    /**
-     * Delete contact.
-     */
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteContact(final @PathVariable Long id) {
-        contactService.deleteContact(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
+  /**
+   * Delete contact.
+   */
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Void> deleteContact(final @PathVariable Long id) {
+    contactService.deleteContact(id);
+    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+  }
 }
 

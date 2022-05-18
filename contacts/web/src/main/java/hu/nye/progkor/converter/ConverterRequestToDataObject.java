@@ -12,16 +12,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class ConverterRequestToDataObject implements Converter<ContactRequest, ContactDTO> {
 
-    @Override
-    public ContactDTO convert(@NonNull final ContactRequest request) {
-        return new ContactDTO(null,
-                request.getFirstName(),
-                request.getLastName(),
-                request.getBirthday(),
-                request.getPhoneNumber(),
-                request.getEmailAddress(),
-                request.getAddress(),
-                request.getOther()
-        );
-    }
+  @Override
+  public ContactDTO convert(@NonNull final ContactRequest request) {
+    return new ContactDTO(null,
+            request.getFirstName(),
+            request.getLastName(),
+            request.getBirthday(),
+            request.getPhoneNumber(),
+            request.getEmailAddress(),
+            request.getAddress(),
+            request.getOther()
+    );
+  }
 }

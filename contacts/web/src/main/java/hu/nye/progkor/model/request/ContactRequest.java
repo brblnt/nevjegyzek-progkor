@@ -14,13 +14,13 @@ import lombok.ToString;
 @ToString
 public class ContactRequest {
 
-    private final String firstName;
-    private final String lastName;
-    private final String birthday;
-    private final String phoneNumber;
-    private final String emailAddress;
-    private final String address;
-    private final String other;
+  private final String firstName;
+  private final String lastName;
+  private final String birthday;
+  private final String phoneNumber;
+  private final String emailAddress;
+  private final String address;
+  private final String other;
 
 
 }
