@@ -4,7 +4,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,15 +13,15 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class DatabasePopulatorService {
 
-    private final List<DatabasePopulator> databasePopulators;
+  private final List<DatabasePopulator> databasePopulators;
 
-    public DatabasePopulatorService(final List<DatabasePopulator> databasePopulators) {
-        this.databasePopulators = databasePopulators;
-    }
+  public DatabasePopulatorService(final List<DatabasePopulator> databasePopulators) {
+    this.databasePopulators = databasePopulators;
+  }
 
-    @PostConstruct
-    public void populateDatabase() {
-        log.info("Add sample records for database to present how it work.");
-        databasePopulators.forEach(DatabasePopulator::populateDatabase);
-    }
+  @PostConstruct
+  public void populateDatabase() {
+    log.info("Add sample records for database to present how it work.");
+    databasePopulators.forEach(DatabasePopulator::populateDatabase);
+  }
 }

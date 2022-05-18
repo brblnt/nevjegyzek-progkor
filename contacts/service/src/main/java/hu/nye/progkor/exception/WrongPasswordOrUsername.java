@@ -5,7 +5,7 @@ package hu.nye.progkor.exception;
  */
 public class WrongPasswordOrUsername extends RuntimeException {
 
-    public WrongPasswordOrUsername(String message) {
-        super(message);
-    }
+  public WrongPasswordOrUsername(String message) {
+    super(message);
+  }
 }

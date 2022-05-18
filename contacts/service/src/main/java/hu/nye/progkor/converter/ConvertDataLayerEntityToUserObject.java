@@ -10,13 +10,13 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ConvertDataLayerEntityToUserObject implements Converter<User, UserDTO> {
-    @Override
-    public UserDTO convert(User source) {
-        return new UserDTO(
-                source.getId(),
-                source.getUserName(),
-                source.getEmailAddress(),
-                source.getPassword()
-        );
-    }
+  @Override
+  public UserDTO convert(User source) {
+    return new UserDTO(
+            source.getId(),
+            source.getUserName(),
+            source.getEmailAddress(),
+            source.getPassword()
+    );
+  }
 }

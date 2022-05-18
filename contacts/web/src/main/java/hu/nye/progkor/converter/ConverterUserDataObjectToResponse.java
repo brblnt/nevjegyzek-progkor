@@ -12,12 +12,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class ConverterUserDataObjectToResponse implements Converter<UserDTO, UserResponse> {
 
-    @Override
-    public UserResponse convert(@NonNull final UserDTO source) {
-        return new UserResponse(
-                source.id(),
-                source.username(),
-                source.emailAddress(),
-                source.password());
-    }
+  @Override
+  public UserResponse convert(@NonNull final UserDTO source) {
+    return new UserResponse(
+            source.id(),
+            source.username(),
+            source.emailAddress(),
+            source.password());
+  }
 }

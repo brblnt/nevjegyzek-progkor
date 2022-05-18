@@ -5,5 +5,5 @@ package hu.nye.progkor.populator;
  */
 public interface DatabasePopulator {
 
-    void populateDatabase();
+  void populateDatabase();
 }

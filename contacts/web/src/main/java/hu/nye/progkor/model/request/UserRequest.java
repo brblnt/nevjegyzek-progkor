@@ -14,7 +14,7 @@ import lombok.ToString;
 @ToString
 public class UserRequest {
 
-    private final String username;
-    private final String emailAddress;
-    private final String password;
+  private final String username;
+  private final String emailAddress;
+  private final String password;
 }
