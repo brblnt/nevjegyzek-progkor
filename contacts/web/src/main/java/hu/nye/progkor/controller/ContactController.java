@@ -11,8 +11,8 @@ import javax.validation.ConstraintViolationException;
 import com.lowagie.text.DocumentException;
 import hu.nye.progkor.ContactService;
 import hu.nye.progkor.exception.NotFoundException;
-import hu.nye.progkor.export.ContactsToPDF;
-import hu.nye.progkor.model.ContactDTO;
+import hu.nye.progkor.export.ContactsToPdf;
+import hu.nye.progkor.model.ContactDto;
 import hu.nye.progkor.model.request.ContactRequest;
 import hu.nye.progkor.model.response.ContactResponse;
 import lombok.RequiredArgsConstructor;
@@ -37,8 +37,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class ContactController {
 
   private final ContactService contactService;
-  private final Converter<ContactDTO, ContactResponse> dataToResponse;
-  private final Converter<ContactRequest, ContactDTO> requestToDto;
+  private final Converter<ContactDto, ContactResponse> dataToResponse;
+  private final Converter<ContactRequest, ContactDto> requestToDto;
 
   /**
    * Create contact with GET method.
@@ -85,7 +85,7 @@ public class ContactController {
                                   final @PathVariable("id") Long id) {
     model.addAttribute("loginBar", UserController.isLogin());
     try {
-      final ContactDTO contact = contactService.getContact(id);
+      final ContactDto contact = contactService.getContact(id);
       model.addAttribute("contact", contact);
       return "contacts/edit";
     } catch (NotFoundException e) {
@@ -138,7 +138,7 @@ public class ContactController {
                                 final @PathVariable("id") Long id) {
     model.addAttribute("loginBar", UserController.isLogin());
     try {
-      final ContactDTO contact = contactService.getContact(id);
+      final ContactDto contact = contactService.getContact(id);
       model.addAttribute("contact", dataToResponse.convert(contact));
       return "contacts/contactCard";
     } catch (NotFoundException e) {
@@ -150,7 +150,7 @@ public class ContactController {
    * Export all contact to pdf.
    */
   @GetMapping("/export/pdf")
-  public void exportToPDF(HttpServletResponse response) throws DocumentException, IOException {
+  public void exportToPdf(HttpServletResponse response) throws DocumentException, IOException {
     response.setContentType("application/pdf");
     DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
     String currentDateTime = dateFormatter.format(new Date());
@@ -159,9 +159,9 @@ public class ContactController {
     String headerValue = "attachment; filename=contacts_" + currentDateTime + ".pdf";
     response.setHeader(headerKey, headerValue);
 
-    List<ContactDTO> listUsers = contactService.getAllContacts();
+    List<ContactDto> listUsers = contactService.getAllContacts();
 
-    ContactsToPDF exporter = new ContactsToPDF(listUsers);
+    ContactsToPdf exporter = new ContactsToPdf(listUsers);
     exporter.export(response);
 
   }

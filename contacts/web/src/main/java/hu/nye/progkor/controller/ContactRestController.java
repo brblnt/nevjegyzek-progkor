@@ -1,9 +1,8 @@
 package hu.nye.progkor.controller;
 
 import java.util.List;
-
 import hu.nye.progkor.ContactService;
-import hu.nye.progkor.model.ContactDTO;
+import hu.nye.progkor.model.ContactDto;
 import hu.nye.progkor.model.request.ContactRequest;
 import hu.nye.progkor.model.response.ContactResponse;
 import lombok.RequiredArgsConstructor;
@@ -27,8 +26,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ContactRestController {
 
   private final ContactService contactService;
-  private final Converter<ContactDTO, ContactResponse> contactDtoToResponseConverter;
-  private final Converter<ContactRequest, ContactDTO> contactRequestToDtoConverter;
+  private final Converter<ContactDto, ContactResponse> contactDtoToResponseConverter;
+  private final Converter<ContactRequest, ContactDto> contactRequestToDtoConverter;
 
   /**
    * Get all contact.
@@ -62,9 +61,14 @@ public class ContactRestController {
    * Update contact.
    */
   @PutMapping("/{id}")
-  public ContactResponse updateContact(final @PathVariable Long id, final @RequestBody ContactRequest contactRequest) {
+  public ContactResponse updateContact(final @PathVariable
+                                                 Long id,
+                                       final @RequestBody
+                                               ContactRequest contactRequest) {
     return contactDtoToResponseConverter.convert(
-            contactService.updateContact(id, contactRequestToDtoConverter.convert(contactRequest))
+            contactService.updateContact(
+                    id,
+                    contactRequestToDtoConverter.convert(contactRequest))
     );
   }
 

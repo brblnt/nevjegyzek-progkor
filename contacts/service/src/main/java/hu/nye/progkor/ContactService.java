@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import hu.nye.progkor.exception.NotFoundException;
 import hu.nye.progkor.model.Contact;
-import hu.nye.progkor.model.ContactDTO;
+import hu.nye.progkor.model.ContactDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
@@ -19,12 +19,13 @@ import org.springframework.stereotype.Service;
 public class ContactService {
 
   private final Repository repository;
-  private final Converter<ContactDTO, Contact> convertDataObjetToEntity;
-  private final Converter<Contact, ContactDTO> convertEntityToDataObject;
+  private final Converter<ContactDto, Contact> convertDataObjetToEntity;
+  private final Converter<Contact, ContactDto> convertEntityToDataObject;
 
   @Autowired
-  public ContactService(Repository repository, Converter<ContactDTO, Contact> convertDataObjetToEntity,
-                        Converter<Contact, ContactDTO> convertEntityToDataObject) {
+  public ContactService(Repository repository,
+                        Converter<ContactDto, Contact> convertDataObjetToEntity,
+                        Converter<Contact, ContactDto> convertEntityToDataObject) {
     this.repository = repository;
     this.convertDataObjetToEntity = convertDataObjetToEntity;
     this.convertEntityToDataObject = convertEntityToDataObject;
@@ -35,7 +36,7 @@ public class ContactService {
    *
    * @return service layer compatible list with data.
    */
-  public List<ContactDTO> getAllContacts() {
+  public List<ContactDto> getAllContacts() {
     log.info("Fetch all from database.");
     return repository.findAll().stream()
             .map(convertEntityToDataObject::convert)
@@ -47,23 +48,25 @@ public class ContactService {
    *
    * @return service layer compatible model with data.
    */
-  public ContactDTO getContact(final Long id) {
+  public ContactDto getContact(final Long id) {
     log.info("Get contact from database by id: " + id + " .");
     return repository.findById(id)
             .map(convertEntityToDataObject::convert)
-            .orElseThrow(() -> new NotFoundException("Nincs ilyen azonosítóval elátott névjegy:" + id + "."));
+            .orElseThrow(() ->
+                    new NotFoundException("Nincs ilyen azonosítóval elátott névjegy:" + id + "."));
   }
 
   /**
    * Create new record in the database.
    */
-  public ContactDTO createContact(final ContactDTO contact) {
+  public ContactDto createContact(final ContactDto contact) {
     log.info("Create new contact.");
     return Optional.ofNullable(contact)
             .map(convertDataObjetToEntity::convert)
             .map(repository::save)
             .map(convertEntityToDataObject::convert)
-            .orElseThrow(() -> new IllegalArgumentException("Nincs ilyen névjegy " + contact + "."));
+            .orElseThrow(() ->
+                    new IllegalArgumentException("Nincs ilyen névjegy " + contact + "."));
   }
 
   /**
@@ -71,10 +74,11 @@ public class ContactService {
    *
    * @return with the new contact.
    */
-  public ContactDTO updateContact(final Long id, final ContactDTO newData) {
+  public ContactDto updateContact(final Long id, final ContactDto newData) {
     log.info("Update contact (id: " + id + " ) with new data values.");
     final Contact contact = repository.findById(id)
-            .orElseThrow(() -> new NotFoundException("Nincs ilyen azonosítóval elátott névjegy:" + id + "."));
+            .orElseThrow(() ->
+                    new NotFoundException("Nincs ilyen azonosítóval elátott névjegy:" + id + "."));
 
     contact.setFirstName(newData.firstName());
     contact.setLastName(newData.lastName());

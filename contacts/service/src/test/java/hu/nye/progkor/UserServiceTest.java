@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import hu.nye.progkor.model.User;
-import hu.nye.progkor.model.UserDTO;
+import hu.nye.progkor.model.UserDto;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -22,9 +22,9 @@ public class UserServiceTest {
   @Mock
   private UserRepository repository;
   @Mock
-  private Converter<UserDTO, User> convertDataObjectToEntity;
+  private Converter<UserDto, User> convertDataObjectToEntity;
   @Mock
-  private Converter<User, UserDTO> convertEntityToDataObject;
+  private Converter<User, UserDto> convertEntityToDataObject;
 
   private UserService underTest;
 
@@ -36,22 +36,22 @@ public class UserServiceTest {
   private final String EMAIL_ADDRESS1 = "sample@email.example1";
   private final String PASSWORD = "pwd";
 
-  private UserDTO dtoWithId, dtoWithId2;
+  private UserDto dtoWithId, dtoWithId2;
   private User userWithId, userWithId2;
   private List<User> userList;
-  private List<UserDTO> dtoList;
+  private List<UserDto> dtoList;
 
-  private final UserDTO falseData = new UserDTO(
+  private final UserDto falseData = new UserDto(
           1010L, "nincs", "nincs", "nincs");
-  private final UserDTO falseData2 = new UserDTO(
+  private final UserDto falseData2 = new UserDto(
           1010L, "sample@email.example", "nincs", "nincs");
 
   @Test
   public void getAllUsersShouldReturnAListOfContactsCheckFirstMatch() {
     //given
-    dtoWithId = new UserDTO(ID, USER_NAME, EMAIL_ADDRESS, PASSWORD);
+    dtoWithId = new UserDto(ID, USER_NAME, EMAIL_ADDRESS, PASSWORD);
     userWithId = new User(ID, USER_NAME, EMAIL_ADDRESS, PASSWORD);
-    dtoWithId2 = new UserDTO(ID2, USER_NAME1, EMAIL_ADDRESS1, PASSWORD);
+    dtoWithId2 = new UserDto(ID2, USER_NAME1, EMAIL_ADDRESS1, PASSWORD);
     userWithId2 = new User(ID2, USER_NAME1, EMAIL_ADDRESS1, PASSWORD);
 
 
@@ -65,7 +65,7 @@ public class UserServiceTest {
     given(convertEntityToDataObject.convert(userWithId)).willReturn(dtoWithId);
     //when
     boolean end = false;
-    List<UserDTO> except = underTest.getAllUser();
+    List<UserDto> except = underTest.getAllUser();
     if (except.get(0).equals(dtoList.get(0)))
       end = true;
     //then
@@ -76,9 +76,9 @@ public class UserServiceTest {
   @Test
   public void testLoginToTheSiteWithOneCorrectDataShouldReturnFalse() {
     //given
-    dtoWithId = new UserDTO(ID, USER_NAME, EMAIL_ADDRESS, PASSWORD);
+    dtoWithId = new UserDto(ID, USER_NAME, EMAIL_ADDRESS, PASSWORD);
     userWithId = new User(ID, USER_NAME, EMAIL_ADDRESS, PASSWORD);
-    dtoWithId2 = new UserDTO(ID2, USER_NAME1, EMAIL_ADDRESS1, PASSWORD);
+    dtoWithId2 = new UserDto(ID2, USER_NAME1, EMAIL_ADDRESS1, PASSWORD);
     userWithId2 = new User(ID2, USER_NAME1, EMAIL_ADDRESS1, PASSWORD);
 
 
@@ -99,9 +99,9 @@ public class UserServiceTest {
   @Test
   public void testLoginToTheSiteWithCorrectDataShouldReturnTrue() {
     //given
-    dtoWithId = new UserDTO(ID, USER_NAME, EMAIL_ADDRESS, PASSWORD);
+    dtoWithId = new UserDto(ID, USER_NAME, EMAIL_ADDRESS, PASSWORD);
     userWithId = new User(ID, USER_NAME, EMAIL_ADDRESS, PASSWORD);
-    dtoWithId2 = new UserDTO(ID2, USER_NAME1, EMAIL_ADDRESS1, PASSWORD);
+    dtoWithId2 = new UserDto(ID2, USER_NAME1, EMAIL_ADDRESS1, PASSWORD);
     userWithId2 = new User(ID2, USER_NAME1, EMAIL_ADDRESS1, PASSWORD);
 
 
@@ -122,9 +122,9 @@ public class UserServiceTest {
   @Test
   public void testLoginToTheSiteWithWrongDataShouldReturnFalse() {
     //given
-    dtoWithId = new UserDTO(ID, USER_NAME, EMAIL_ADDRESS, PASSWORD);
+    dtoWithId = new UserDto(ID, USER_NAME, EMAIL_ADDRESS, PASSWORD);
     userWithId = new User(ID, USER_NAME, EMAIL_ADDRESS, PASSWORD);
-    dtoWithId2 = new UserDTO(ID2, USER_NAME1, EMAIL_ADDRESS1, PASSWORD);
+    dtoWithId2 = new UserDto(ID2, USER_NAME1, EMAIL_ADDRESS1, PASSWORD);
     userWithId2 = new User(ID2, USER_NAME1, EMAIL_ADDRESS1, PASSWORD);
 
 

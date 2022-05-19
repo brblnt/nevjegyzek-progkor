@@ -16,16 +16,16 @@ import com.lowagie.text.Phrase;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
-import hu.nye.progkor.model.ContactDTO;
+import hu.nye.progkor.model.ContactDto;
 
 /**
  * Export contacts to PDF file.
  */
-public class ContactsToPDF {
+public class ContactsToPdf {
 
-  private List<ContactDTO> contacts;
+  private List<ContactDto> contacts;
 
-  public ContactsToPDF(List<ContactDTO> contacts) {
+  public ContactsToPdf(List<ContactDto> contacts) {
     this.contacts = contacts;
   }
 
@@ -55,7 +55,7 @@ public class ContactsToPDF {
   }
 
   private void writeTableData(PdfPTable table) {
-    for (ContactDTO dto : contacts) {
+    for (ContactDto dto : contacts) {
       table.addCell(String.valueOf(dto.id()));
       table.addCell(dto.firstName() + " " + dto.lastName());
       table.addCell(String.valueOf(dto.phoneNumber()));

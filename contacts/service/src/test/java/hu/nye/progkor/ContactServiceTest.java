@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import hu.nye.progkor.model.Contact;
-import hu.nye.progkor.model.ContactDTO;
+import hu.nye.progkor.model.ContactDto;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -20,17 +20,17 @@ import org.springframework.core.convert.converter.Converter;
 public class ContactServiceTest {
 
 
-  private ContactDTO dtoWithId, dtoWithId2, dtoWithoutId, dtoWithoutId2;
+  private ContactDto dtoWithId, dtoWithId2, dtoWithoutId, dtoWithoutId2;
   private Contact contactWithId, contactWithId2, contactWithoutId, contactWithoutId2;
   private List<Contact> contactList;
-  private List<ContactDTO> dtoList;
+  private List<ContactDto> dtoList;
 
   @Mock
   private Repository repository;
   @Mock
-  private Converter<ContactDTO, Contact> convertDataObjetToEntity;
+  private Converter<ContactDto, Contact> convertDataObjetToEntity;
   @Mock
-  private Converter<Contact, ContactDTO> convertEntityToDataObject;
+  private Converter<Contact, ContactDto> convertEntityToDataObject;
 
   private ContactService underTest;
 
@@ -47,10 +47,10 @@ public class ContactServiceTest {
   @Test
   public void getAllContatctShouldReturnAListOfContactsCheckFirstMatch() {
     //given
-    dtoWithId = new ContactDTO(ID, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
-    dtoWithId2 = new ContactDTO(ID2, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
-    dtoWithoutId = new ContactDTO(null, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
-    dtoWithoutId2 = new ContactDTO(null, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
+    dtoWithId = new ContactDto(ID, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
+    dtoWithId2 = new ContactDto(ID2, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
+    dtoWithoutId = new ContactDto(null, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
+    dtoWithoutId2 = new ContactDto(null, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
 
     contactWithId = new Contact(ID, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
     contactWithId2 = new Contact(ID2, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
@@ -66,7 +66,7 @@ public class ContactServiceTest {
     given(convertEntityToDataObject.convert(contactWithId)).willReturn(dtoWithId);
     //when
     boolean end = false;
-    List<ContactDTO> except = underTest.getAllContacts();
+    List<ContactDto> except = underTest.getAllContacts();
     if (except.get(0).equals(dtoList.get(0)))
       end = true;
     //then
@@ -76,10 +76,10 @@ public class ContactServiceTest {
   @Test
   public void getContactWithIdShouldReturnContact() {
     //given
-    dtoWithId = new ContactDTO(ID, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
-    dtoWithId2 = new ContactDTO(ID2, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
-    dtoWithoutId = new ContactDTO(null, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
-    dtoWithoutId2 = new ContactDTO(null, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
+    dtoWithId = new ContactDto(ID, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
+    dtoWithId2 = new ContactDto(ID2, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
+    dtoWithoutId = new ContactDto(null, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
+    dtoWithoutId2 = new ContactDto(null, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
 
     contactWithId = new Contact(ID, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
     contactWithId2 = new Contact(ID2, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
@@ -94,7 +94,7 @@ public class ContactServiceTest {
     given(convertEntityToDataObject.convert(contactWithId)).willReturn(dtoWithId);
     //when
     boolean end = false;
-    ContactDTO except = underTest.getContact(ID);
+    ContactDto except = underTest.getContact(ID);
     if (except.equals(dtoWithId))
       end = true;
     //then
@@ -105,10 +105,10 @@ public class ContactServiceTest {
   @Test
   public void cretateContactWithoudIdShouldReturnWithId() {
     //given
-    dtoWithId = new ContactDTO(ID, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
-    dtoWithId2 = new ContactDTO(ID2, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
-    dtoWithoutId = new ContactDTO(null, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
-    dtoWithoutId2 = new ContactDTO(null, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
+    dtoWithId = new ContactDto(ID, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
+    dtoWithId2 = new ContactDto(ID2, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
+    dtoWithoutId = new ContactDto(null, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
+    dtoWithoutId2 = new ContactDto(null, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
 
     contactWithId = new Contact(ID, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
     contactWithId2 = new Contact(ID2, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
@@ -124,7 +124,7 @@ public class ContactServiceTest {
     given(convertDataObjetToEntity.convert(dtoWithoutId)).willReturn(contactWithoutId);
     //when
     boolean end = false;
-    ContactDTO except = underTest.createContact(dtoWithoutId);
+    ContactDto except = underTest.createContact(dtoWithoutId);
     if (except.equals(dtoWithId))
       end = true;
     //then
@@ -134,10 +134,10 @@ public class ContactServiceTest {
   @Test
   public void deleteContactById() {
     //given
-    dtoWithId = new ContactDTO(ID, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
-    dtoWithId2 = new ContactDTO(ID2, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
-    dtoWithoutId = new ContactDTO(null, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
-    dtoWithoutId2 = new ContactDTO(null, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
+    dtoWithId = new ContactDto(ID, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
+    dtoWithId2 = new ContactDto(ID2, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
+    dtoWithoutId = new ContactDto(null, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
+    dtoWithoutId2 = new ContactDto(null, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
 
     contactWithId = new Contact(ID, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
     contactWithId2 = new Contact(ID2, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
@@ -157,10 +157,10 @@ public class ContactServiceTest {
   @Test
   public void updateContactById() {
     //given
-    dtoWithId = new ContactDTO(ID, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
-    dtoWithId2 = new ContactDTO(ID2, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
-    dtoWithoutId = new ContactDTO(null, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
-    dtoWithoutId2 = new ContactDTO(null, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
+    dtoWithId = new ContactDto(ID, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
+    dtoWithId2 = new ContactDto(ID2, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
+    dtoWithoutId = new ContactDto(null, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
+    dtoWithoutId2 = new ContactDto(null, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
 
     contactWithId = new Contact(ID, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
     contactWithId2 = new Contact(ID2, FIRST_NAME, LAST_NAME, BIRTHDAY, PHONE_NUMBER, EMAIL_ADDRESS, ADDRESS, OTHER);
@@ -176,7 +176,7 @@ public class ContactServiceTest {
     given(repository.findById(ID)).willReturn(java.util.Optional.ofNullable(contactWithId));
     //when
     boolean end = false;
-    ContactDTO except = underTest.updateContact(ID, dtoWithId);
+    ContactDto except = underTest.updateContact(ID, dtoWithId);
     if (except.equals(dtoWithId))
       end = true;
     //then

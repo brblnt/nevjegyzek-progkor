@@ -1,6 +1,6 @@
 package hu.nye.progkor.converter;
 
-import hu.nye.progkor.model.ContactDTO;
+import hu.nye.progkor.model.ContactDto;
 import hu.nye.progkor.model.response.ContactResponse;
 import lombok.NonNull;
 import org.springframework.core.convert.converter.Converter;
@@ -10,10 +10,10 @@ import org.springframework.stereotype.Component;
  * This class convert service layer model to web layer model.
  */
 @Component
-public class ConverterDataObjectToResponse implements Converter<ContactDTO, ContactResponse> {
+public class ConverterDataObjectToResponse implements Converter<ContactDto, ContactResponse> {
 
   @Override
-  public ContactResponse convert(@NonNull final ContactDTO dto) {
+  public ContactResponse convert(@NonNull final ContactDto dto) {
     return new ContactResponse(
             dto.id(),
             dto.firstName(),

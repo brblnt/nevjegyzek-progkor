@@ -1,7 +1,7 @@
 package hu.nye.progkor.converter;
 
 import hu.nye.progkor.model.User;
-import hu.nye.progkor.model.UserDTO;
+import hu.nye.progkor.model.UserDto;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -9,10 +9,10 @@ import org.springframework.stereotype.Component;
  * Convert Data layer model to Service layer model.
  */
 @Component
-public class ConvertDataLayerEntityToUserObject implements Converter<User, UserDTO> {
+public class ConvertDataLayerEntityToUserObject implements Converter<User, UserDto> {
   @Override
-  public UserDTO convert(User source) {
-    return new UserDTO(
+  public UserDto convert(User source) {
+    return new UserDto(
             source.getId(),
             source.getUserName(),
             source.getEmailAddress(),

@@ -1,9 +1,9 @@
-package hu.nye.progkor.model.response;
+package hu.nye.progkor.model;
 
 /**
- * Web layer representation of a contact.
+ * Service layer representation of a contact.
  */
-public record ContactResponse(
+public record ContactDto(
         Long id,
         String firstName,
         String lastName,

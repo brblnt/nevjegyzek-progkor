@@ -1,7 +1,7 @@
 package hu.nye.progkor.controller;
 
 import hu.nye.progkor.UserService;
-import hu.nye.progkor.model.UserDTO;
+import hu.nye.progkor.model.UserDto;
 import hu.nye.progkor.model.request.UserRequest;
 import hu.nye.progkor.model.response.UserResponse;
 import lombok.RequiredArgsConstructor;
@@ -26,8 +26,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class UserController {
 
   private final UserService userService;
-  private final Converter<UserDTO, UserResponse> dataToResponse;
-  private final Converter<UserRequest, UserDTO> requestToDto;
+  private final Converter<UserDto, UserResponse> dataToResponse;
+  private final Converter<UserRequest, UserDto> requestToDto;
 
   private static boolean login = false;
 
@@ -44,8 +44,10 @@ public class UserController {
   @PostMapping(value = "/login", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
   public String editContactPage(final RedirectAttributes redirectAttributes,
                                 final Model model,
-                                final @RequestParam(value = "email", required = false) String email,
-                                final @RequestParam(value = "password", required = false) String password,
+                                final @RequestParam(value = "email", required = false)
+                                          String email,
+                                final @RequestParam(value = "password", required = false)
+                                          String password,
                                 final UserRequest userRequest
   ) {
     login = userService.loginToTheSite(requestToDto.convert(userRequest));
